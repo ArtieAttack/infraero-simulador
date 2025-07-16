@@ -2,13 +2,16 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Sobre o Simulador | INFRAERO</title>
     <link rel="stylesheet" href="css/modern-layout.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       .page-container {
         padding: 0;
@@ -175,9 +178,12 @@
   </head>
   <body>
     <!-- Botão de menu mobile -->
-    <button class="menu-toggle" onclick="toggleSidebar()" style="display: none">
+    <button class="menu-toggle" onclick="toggleSidebar()">
       <i class="fas fa-bars"></i>
     </button>
+    
+    <!-- Overlay para fechar sidebar -->
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
 
     <div class="main-container">
       <!-- Sidebar com conteúdo simplificado -->
@@ -264,7 +270,19 @@
       // Função para toggle da sidebar em mobile
       function toggleSidebar() {
         const sidebar = document.querySelector(".sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+        
         sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
+      
+      // Função para fechar sidebar
+      function closeSidebar() {
+        const sidebar = document.querySelector(".sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+        
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
       }
 
       // Fechar sidebar ao clicar fora dela em mobile
@@ -278,9 +296,25 @@
           !menuToggle.contains(e.target) &&
           sidebar.classList.contains("active")
         ) {
-          sidebar.classList.remove("active");
+          closeSidebar();
         }
       });
+      
+      // Fechar sidebar ao clicar em links
+      const sidebarLinks = document.querySelectorAll('.sidebar a');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', closeSidebar);
+      });
+      
+      // Prevenir zoom duplo em mobile
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
 
       // Adiciona efeitos de hover e animação aos cartões de área
       document.querySelectorAll(".area-card").forEach((card) => {

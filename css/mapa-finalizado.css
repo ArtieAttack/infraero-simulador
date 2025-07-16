@@ -298,3 +298,60 @@
     left: 10px;
   }
 }
+
+@media (max-width: 360px) {
+  .mapa-finalizado .botao-area {
+    width: 85px;
+    height: 35px;
+    font-size: 9px;
+    border-radius: 8px;
+    padding: 2px;
+  }
+
+  .mapa-finalizado .btn-voltar-inicio,
+  .mapa-finalizado .btn-finalizar-simulador {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 320px) {
+  .mapa-finalizado .botao-area {
+    width: 75px;
+    height: 32px;
+    font-size: 8px;
+    border-radius: 6px;
+  }
+
+  .mapa-finalizado .btn-voltar-inicio,
+  .mapa-finalizado .btn-finalizar-simulador {
+    padding: 5px 10px;
+    font-size: 0.6rem;
+    border-radius: 5px;
+  }
+  
+  .finalizar-simulador-controls {
+    top: 8px;
+    right: 8px;
+  }
+
+  .mapa-finalizado .btn-voltar-inicio {
+    top: 8px;
+    left: 8px;
+  }
+}
+
+/* Otimizações para touch devices */
+@media (max-width: 768px) {
+  .mapa-finalizado .botao-area {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .mapa-finalizado .btn-voltar-inicio,
+  .mapa-finalizado .btn-finalizar-simulador {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+}

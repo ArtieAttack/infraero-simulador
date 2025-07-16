@@ -8,6 +8,7 @@ import { inicializarAreasInterativas, finalizarSimulador, fecharElementosAreaCon
 import { abrirPainelTrilha, fecharPainelTrilha, voltarParaVisaoGeral } from './painel.js';
 import { abrirModalVideo, fecharModalVideo, fecharModalSimulado } from './modal.js';
 import { iniciarSimulado } from './simulado.js';
+import { inicializarSuporteMobile, configurarSidebarMobile, otimizarModalMobile } from './mobile-support.js';
 
 // Estado global do simulador
 let modoOverview = false;
@@ -27,6 +28,11 @@ window.onload = () => {
     inicializarInterface();
     configurarEventListeners();
     inicializarZoomInterativo();
+    
+    // Inicializar suporte mobile
+    inicializarSuporteMobile();
+    configurarSidebarMobile();
+    otimizarModalMobile();
 
     // Aguardar um pouco antes de inicializar as áreas
     setTimeout(() => {
