@@ -28,8 +28,9 @@ export function abrirModalVideo(numero) {
 
   // Atualizar conteúdo do modal
   document.getElementById('videoTitulo').textContent = trilha.video.titulo;
-  const videoPlayer = document.getElementById('videoPlayer');
-  videoPlayer.src = trilha.video.url;
+
+  // Configurar vídeo (YouTube ou local)
+  configureVideoPlayer(trilha.video.url);
 
   // Atualizar botão de iniciar simulado
   const btnIniciarSimulado = document.getElementById('btnIniciarSimulado');
@@ -53,14 +54,66 @@ export function abrirModalVideo(numero) {
   console.log('Modal de vídeo aberto');
 }
 
+// Função para configurar o player de vídeo (YouTube ou local)
+function configureVideoPlayer(url) {
+  const videoPlayer = document.getElementById('videoPlayer');
+  const youtubePlayer = document.getElementById('youtubePlayer');
+
+  // Verificar se é um link do YouTube
+  if (isYouTubeUrl(url)) {
+    // Configurar iframe do YouTube
+    const embedUrl = convertToYouTubeEmbed(url);
+    youtubePlayer.src = embedUrl;
+    youtubePlayer.style.display = 'block';
+    videoPlayer.style.display = 'none';
+    console.log('Configurado para YouTube:', embedUrl);
+  } else {
+    // Configurar vídeo local
+    videoPlayer.src = url;
+    videoPlayer.style.display = 'block';
+    youtubePlayer.style.display = 'none';
+    console.log('Configurado para vídeo local:', url);
+  }
+}
+
+// Função para verificar se é URL do YouTube
+function isYouTubeUrl(url) {
+  return url.includes('youtube.com') || url.includes('youtu.be');
+}
+
+// Função para converter URL do YouTube para embed
+function convertToYouTubeEmbed(url) {
+  let videoId = '';
+
+  if (url.includes('youtube.com/watch?v=')) {
+    videoId = url.split('v=')[1].split('&')[0];
+  } else if (url.includes('youtu.be/')) {
+    videoId = url.split('youtu.be/')[1].split('?')[0];
+  }
+
+  return `https://www.youtube.com/embed/${videoId}`;
+}
+
 // Função para fechar modal de vídeo
 export function fecharModalVideo() {
   const modal = document.getElementById('modalVideo');
-  const video = document.getElementById('videoPlayer');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const youtubePlayer = document.getElementById('youtubePlayer');
 
   if (modal) {
     modal.classList.remove('ativo');
-    video.pause();
+
+    // Pausar vídeo local se estiver rodando
+    if (videoPlayer && videoPlayer.style.display !== 'none') {
+      videoPlayer.pause();
+      videoPlayer.src = '';
+    }
+
+    // Limpar iframe do YouTube
+    if (youtubePlayer && youtubePlayer.style.display !== 'none') {
+      youtubePlayer.src = '';
+    }
+
     document.body.style.overflow = 'auto';
   }
 }

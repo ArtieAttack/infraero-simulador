@@ -16,7 +16,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/coleta.jpg",
     video: {
       titulo: "Processo de Coleta de Vítimas",
-      url: "assets/videos/coleta.mp4",
+      url: "https://www.youtube.com/watch?v=pfy5Ih69Fw0",
       inicio: "04:00",
       fim: "06:20"
     }
@@ -33,7 +33,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/triagem.jpg",
     video: {
       titulo: "Processo de Triagem das Vítimas",
-      url: "assets/videos/triagem.mp4",
+      url: "https://www.youtube.com/watch?v=JKIFeCFDBH0",
       inicio: "06:23",
       fim: "06:46"
     }
@@ -50,7 +50,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/estabilizacao.jpg",
     video: {
       titulo: "Procedimentos de Estabilização",
-      url: "assets/videos/estabilizacao.mp4",
+      url: "https://www.youtube.com/watch?v=3EPpMJ-ojCg",
       inicio: "06:50",
       fim: "07:57"
     }
@@ -67,7 +67,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/transporte.jpg",
     video: {
       titulo: "Processo de Transporte e Registro",
-      url: "assets/videos/transporte.mp4",
+      url: "https://www.youtube.com/watch?v=17Y9UkqQpKo",
       inicio: "09:30",
       fim: "12:00"
     }

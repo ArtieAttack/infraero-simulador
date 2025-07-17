@@ -2,7 +2,10 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Mapa Finalizado - Simulador Infraero</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/mapa-finalizado.css" />
@@ -142,10 +145,23 @@
           ></button>
         </div>
         <div class="modal-body">
-          <video id="videoPlayer" controls>
-            <source src="" type="video/mp4" />
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
+          <div id="videoContainer" class="video-container">
+            <video id="videoPlayer" controls style="display: none">
+              <source src="" type="video/mp4" />
+              Seu navegador não suporta o elemento de vídeo.
+            </video>
+            <iframe
+              id="youtubePlayer"
+              width="100%"
+              src=""
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              style="display: none"
+            >
+            </iframe>
+          </div>
         </div>
         <div class="modal-footer">
           <button
