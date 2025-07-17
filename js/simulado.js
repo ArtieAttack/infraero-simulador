@@ -78,7 +78,7 @@ export function iniciarSimulado(trilhaId) {
       // Melhorado: event listener mais robusto para permitir alteração de marcação
       const radioInput = div.querySelector('input[type="radio"]');
       const label = div.querySelector('label');
-      
+
       // Event listener no div da opção
       div.addEventListener('click', (e) => {
         // Permite que o clique funcione normalmente no radio button
@@ -86,10 +86,10 @@ export function iniciarSimulado(trilhaId) {
           respostas[index] = i;
           return;
         }
-        
+
         // Para cliques em outros elementos da div
         e.preventDefault();
-        
+
         // Permitir desmarcar se clicar na mesma opção já selecionada
         if (radioInput.checked && respostas[index] === i) {
           radioInput.checked = false;
@@ -98,7 +98,7 @@ export function iniciarSimulado(trilhaId) {
           radioInput.checked = true;
           respostas[index] = i;
         }
-        
+
         // Triggerar evento change para atualizar visual
         radioInput.dispatchEvent(new Event('change', { bubbles: true }));
       });
@@ -113,7 +113,7 @@ export function iniciarSimulado(trilhaId) {
       // Event listener no label para funcionar como esperado
       label.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         // Permitir desmarcar se clicar na mesma opção já selecionada
         if (radioInput.checked && respostas[index] === i) {
           radioInput.checked = false;
@@ -122,7 +122,7 @@ export function iniciarSimulado(trilhaId) {
           radioInput.checked = true;
           respostas[index] = i;
         }
-        
+
         radioInput.dispatchEvent(new Event('change', { bubbles: true }));
       });
 
