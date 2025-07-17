@@ -2,16 +2,22 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Simulador INFRAERO</title>
     <link rel="stylesheet" href="css/modern-layout.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       /* Estilos específicos da home */
       .home-content {
@@ -207,7 +213,7 @@
 
         <div class="home-buttons">
           <button class="btn btn-lg btn-accent" onclick="iniciarSimulador()">
-            <i class="fas fa-play" style="margin-right: 0.5rem;"></i>
+            <i class="fas fa-play" style="margin-right: 0.5rem"></i>
             Iniciar Simulador
           </button>
         </div>
@@ -235,20 +241,22 @@
 
         // Remove o mute e inicia o vídeo
         video.muted = false;
-        
+
         // Tenta reproduzir o vídeo
         const playPromise = video.play();
-        
+
         if (playPromise !== undefined) {
-          playPromise.then(() => {
-            // Vídeo iniciado com sucesso
-            console.log('Vídeo iniciado');
-          }).catch(error => {
-            // Falha ao reproduzir, provavelmente por política de autoplay
-            console.log('Erro ao reproduzir vídeo:', error);
-            // Redireciona diretamente para a página sobre
-            window.location.href = "sobre.html";
-          });
+          playPromise
+            .then(() => {
+              // Vídeo iniciado com sucesso
+              console.log("Vídeo iniciado");
+            })
+            .catch((error) => {
+              // Falha ao reproduzir, provavelmente por política de autoplay
+              console.log("Erro ao reproduzir vídeo:", error);
+              // Redireciona diretamente para a página sobre
+              window.location.href = "sobre.html";
+            });
         }
 
         // Quando o vídeo terminar, redireciona para a página sobre
@@ -275,20 +283,24 @@
       }
 
       // Prevenção de zoom em dispositivos móveis
-      document.addEventListener('touchstart', function(e) {
+      document.addEventListener("touchstart", function (e) {
         if (e.touches.length > 1) {
           e.preventDefault();
         }
       });
 
       let lastTouchEnd = 0;
-      document.addEventListener('touchend', function(e) {
-        const now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300) {
-          e.preventDefault();
-        }
-        lastTouchEnd = now;
-      }, false);
+      document.addEventListener(
+        "touchend",
+        function (e) {
+          const now = new Date().getTime();
+          if (now - lastTouchEnd <= 300) {
+            e.preventDefault();
+          }
+          lastTouchEnd = now;
+        },
+        false
+      );
     </script>
   </body>
 </html>

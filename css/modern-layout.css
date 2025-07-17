@@ -872,7 +872,7 @@ html {
   box-sizing: border-box;
 }
 
-.full-page, 
+.full-page,
 .page-with-bg {
   width: 100vw;
   max-width: 100%;
