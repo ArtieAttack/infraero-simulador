@@ -75,55 +75,34 @@ export function iniciarSimulado(trilhaId) {
       div.className = 'opcao';
       div.innerHTML = `<input type="radio" name="questao" value="${i}" id="opcao${i}"><label for="opcao${i}" class="opcao-texto">${opcao}</label>`;
 
-      // Melhorado: event listener mais robusto para permitir alteração de marcação
       const radioInput = div.querySelector('input[type="radio"]');
-      const label = div.querySelector('label');
 
-      // Event listener no div da opção
+      // Event listener simplificado - apenas no div da opção
       div.addEventListener('click', (e) => {
-        // Permite que o clique funcione normalmente no radio button
-        if (e.target.type === 'radio') {
+        // Se clicou diretamente no radio button, deixar o comportamento nativo
+        if (e.target === radioInput) {
           respostas[index] = i;
           return;
         }
 
-        // Para cliques em outros elementos da div
+        // Para cliques em qualquer outro lugar da div (label, texto, etc.)
         e.preventDefault();
+        e.stopPropagation();
 
-        // Permitir desmarcar se clicar na mesma opção já selecionada
-        if (radioInput.checked && respostas[index] === i) {
-          radioInput.checked = false;
-          delete respostas[index];
-        } else {
-          radioInput.checked = true;
-          respostas[index] = i;
-        }
+        // Desmarcar todas as outras opções primeiro
+        const todasOpcoes = container.querySelectorAll('input[type="radio"]');
+        todasOpcoes.forEach(radio => radio.checked = false);
 
-        // Triggerar evento change para atualizar visual
-        radioInput.dispatchEvent(new Event('change', { bubbles: true }));
+        // Marcar a opção clicada
+        radioInput.checked = true;
+        respostas[index] = i;
       });
 
-      // Event listener adicional no radio button para garantir funcionalidade
+      // Event listener no radio button para garantir que funciona
       radioInput.addEventListener('change', (e) => {
         if (e.target.checked) {
           respostas[index] = i;
         }
-      });
-
-      // Event listener no label para funcionar como esperado
-      label.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // Permitir desmarcar se clicar na mesma opção já selecionada
-        if (radioInput.checked && respostas[index] === i) {
-          radioInput.checked = false;
-          delete respostas[index];
-        } else {
-          radioInput.checked = true;
-          respostas[index] = i;
-        }
-
-        radioInput.dispatchEvent(new Event('change', { bubbles: true }));
       });
 
       container.appendChild(div);

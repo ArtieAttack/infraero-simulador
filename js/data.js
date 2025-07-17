@@ -33,7 +33,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/triagem.jpg",
     video: {
       titulo: "Processo de Triagem das Vítimas",
-      url: "https://www.youtube.com/watch?v=JKIFeCFDBH0",
+      url: "https://www.youtube.com/watch?v=sx3gl3HnFlg",
       inicio: "06:23",
       fim: "06:46"
     }
