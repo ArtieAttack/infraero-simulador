@@ -29,7 +29,7 @@ export function abrirModalVideo(numero) {
   // Atualizar conteúdo do modal
   document.getElementById('videoTitulo').textContent = trilha.video.titulo;
 
-  // Configurar vídeo (YouTube ou local)
+  // Configurar vídeo (YouTube, Vimeo ou local)
   configureVideoPlayer(trilha.video.url);
 
   // Atualizar botão de iniciar simulado
@@ -54,7 +54,7 @@ export function abrirModalVideo(numero) {
   console.log('Modal de vídeo aberto');
 }
 
-// Função para configurar o player de vídeo (YouTube ou local)
+// Função para configurar o player de vídeo (YouTube, Vimeo ou local)
 function configureVideoPlayer(url) {
   const videoPlayer = document.getElementById('videoPlayer');
   const youtubePlayer = document.getElementById('youtubePlayer');
@@ -67,6 +67,13 @@ function configureVideoPlayer(url) {
     youtubePlayer.style.display = 'block';
     videoPlayer.style.display = 'none';
     console.log('Configurado para YouTube:', embedUrl);
+  } else if (isVimeoUrl(url)) {
+    // Configurar iframe do Vimeo
+    const embedUrl = convertToVimeoEmbed(url);
+    youtubePlayer.src = embedUrl;
+    youtubePlayer.style.display = 'block';
+    videoPlayer.style.display = 'none';
+    console.log('Configurado para Vimeo:', embedUrl);
   } else {
     // Configurar vídeo local
     videoPlayer.src = url;
@@ -81,6 +88,11 @@ function isYouTubeUrl(url) {
   return url.includes('youtube.com') || url.includes('youtu.be');
 }
 
+// Função para verificar se é URL do Vimeo
+function isVimeoUrl(url) {
+  return url.includes('vimeo.com');
+}
+
 // Função para converter URL do YouTube para embed
 function convertToYouTubeEmbed(url) {
   let videoId = '';
@@ -92,6 +104,21 @@ function convertToYouTubeEmbed(url) {
   }
 
   return `https://www.youtube.com/embed/${videoId}`;
+}
+
+// Função para converter URL do Vimeo para embed
+function convertToVimeoEmbed(url) {
+  let videoId = '';
+
+  // Extrair ID do vídeo da URL do Vimeo
+  if (url.includes('vimeo.com/')) {
+    const matches = url.match(/vimeo\.com\/(\d+)/);
+    if (matches && matches[1]) {
+      videoId = matches[1];
+    }
+  }
+
+  return `https://player.vimeo.com/video/${videoId}`;
 }
 
 // Função para fechar modal de vídeo
@@ -109,7 +136,7 @@ export function fecharModalVideo() {
       videoPlayer.src = '';
     }
 
-    // Limpar iframe do YouTube
+    // Limpar iframe do YouTube/Vimeo
     if (youtubePlayer && youtubePlayer.style.display !== 'none') {
       youtubePlayer.src = '';
     }

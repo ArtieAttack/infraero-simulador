@@ -16,7 +16,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/coleta.jpg",
     video: {
       titulo: "Processo de Coleta de Vítimas",
-      url: "https://www.youtube.com/watch?v=pfy5Ih69Fw0",
+      url: "https://vimeo.com/1102332807",
       inicio: "04:00",
       fim: "06:20"
     }
@@ -33,7 +33,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/triagem.jpg",
     video: {
       titulo: "Processo de Triagem das Vítimas",
-      url: "https://www.youtube.com/watch?v=sx3gl3HnFlg",
+      url: "https://vimeo.com/1102332992",
       inicio: "06:23",
       fim: "06:46"
     }
@@ -50,7 +50,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/estabilizacao.jpg",
     video: {
       titulo: "Procedimentos de Estabilização",
-      url: "https://www.youtube.com/watch?v=3EPpMJ-ojCg",
+      url: "https://vimeo.com/1102333061",
       inicio: "06:50",
       fim: "07:57"
     }
@@ -67,7 +67,7 @@ export const trilhasData = {
     imagem: "assets/images/painel/transporte.jpg",
     video: {
       titulo: "Processo de Transporte e Registro",
-      url: "https://www.youtube.com/watch?v=17Y9UkqQpKo",
+      url: "https://vimeo.com/1102333200",
       inicio: "09:30",
       fim: "12:00"
     }
