@@ -81,7 +81,7 @@ export const trilhasData = {
     classe: "trilha-5",
     areaClasse: "area-outros",
     zoom: { x: 54.6, y: 84.3 },
-    imagem: "assets/images/painel/outras.jpg",
+    imagem: "assets/images/painel/outros.jpg",
     video: {
       titulo: "Isolamento de Fatalidades e Posicionamento do Heliponto",
       url: "",
